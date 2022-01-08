@@ -51,9 +51,7 @@
                                 <!-- 浏览：
                                 <sapn class="leancloud-visitors-count"></span> -->
                                 <!-- 显示不蒜子单页PV -->
-                                <span id="busuanzi_container_page_pv">
-                                    商品浏览次数：<span id="busuanzi_value_page_pv"></span>
-                                </span>
+                                商品浏览次数：<span id="superlist_value_page_pv"></span>
                             </span>
                         
                         <!-- <span>
@@ -66,6 +64,16 @@
         <canvas id="articleHeaderCanvas"></canvas>
     </div>
 </div>
+
+<script type="text/javascript">
+    window.onload = function() { 
+        var page_ct = window.config.busuanzi_page_count;
+        console.log(page_ct);
+        var page_pv = document.getElementById("busuanzi_value_page_pv").innerText; 
+        console.log(page_pv);
+        document.getElementById("superlist_value_page_pv").innerText = parseInt(page_ct) + parseInt(page_pv)
+    }
+</script> 
     <div id="container">
     <div id="content">
         <div id="article">
@@ -165,11 +173,18 @@
 
     </div>
 </div>
-    <!-- 显示不蒜子站点PV -->
-<div id="sitepv">
+    <div style="display: none;">
     <span id="busuanzi_container_site_pv">
-        本站访问次数：<span id="busuanzi_value_site_pv"></span>
+        <span id="busuanzi_value_site_pv"></span>
     </span>
+    <span id="busuanzi_container_page_pv">
+        <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+<!-- 显示不蒜子站点PV -->
+<div id="sitepv">
+    本站访问次数：<span id="superlist_value_site_pv"></span>
 </div>
 
 <div id="footer"></div>
@@ -187,6 +202,17 @@
 <!-- 引入不蒜子脚本计数 -->
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
+
+<script type="text/javascript">
+    window.onload = function() {
+        var site_ct = window.config.busuanzi_site_count;
+        var page_ct = window.config.busuanzi_page_count;
+        var site_pv = document.getElementById("busuanzi_value_site_pv").innerText; 
+        var page_pv = document.getElementById("busuanzi_value_page_pv").innerText; 
+        document.getElementById("superlist_value_site_pv").innerText = parseInt(site_ct) + parseInt(site_pv);
+        document.getElementById("superlist_value_page_pv").innerText = parseInt(page_ct) + parseInt(page_pv);
+    }
+</script> 
     <div id="sidebar">
     <div class="menu-wrap">
         <nav class="menu">
@@ -264,6 +290,8 @@
         WebsiteTitleFocus        : '欢迎回来!',
         WebsiteTitleFocusTimeOut : 1000,
         WebsiteFavicon           : 'https://cdn.jsdelivr.net/gh/toysorrow/img@latest/superlist/website/logo.png',
+        busuanzi_site_count      : 2000,
+        busuanzi_page_count      : 200,
 
         ProgressBar: {
             id       : 'topProgressBar',
